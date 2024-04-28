@@ -5,12 +5,14 @@ from pytube import YouTube
 from moviepy.editor import VideoFileClip
 import ssl
 import time
+import json
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
+decision = "True"
 
 
 class Create_SubtitleFromLink:
@@ -108,7 +110,7 @@ if __name__ == "__main__":
 
         if audio_file:
             creater.run_whisperx(audio_file)
-
+    sys.stdout.write(json.dumps({"decision": decision}))
     end_time = time.time()
     full_time = end_time - start_time
     logging.info(f"Runtime: {full_time:.2f} seconds")
