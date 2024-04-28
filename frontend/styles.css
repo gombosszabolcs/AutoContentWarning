@@ -1,19 +1,23 @@
 /* Alap beállítások a testhez és a dobozhoz */
 body {
-  font-family: Arial, sans-serif; /* Alap betűtípus */
+  background-image: url("resources/background.jpeg"); /* Háttérkép elérési útja */
+  background-size: cover; /* A kép lefedi a teljes felületet */
+  background-position: center 20%; /* A kép pozíciójának változtatása (felfelé vagy lefelé tolás) */
+  background-repeat: no-repeat; /* A kép nem ismétlődik */
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5; /* Világos háttér */
 }
 
 .container {
-  max-width: 600px;
+  max-width: 550px;
   margin: 50px auto;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   background-color: #2196f3; /* Kék háttér */
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  color: #8b4513; /* Barna betűszín */
 }
 
 h1 {

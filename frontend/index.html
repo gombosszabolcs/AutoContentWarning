@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <title>ChildShield</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <!-- Külső CSS -->
     <script src="script.js"></script>
-    <!-- Külső JavaScript -->
   </head>
   <body>
     <div class="container">
-      <!-- Központi doboz -->
       <h1>ChildShield</h1>
       <p>Enter a YouTube URL to check for inappropriate content:</p>
 
-      <!-- Bemeneti mező és küldés gomb -->
       <input
         type="text"
         id="urlInput"
@@ -23,13 +19,10 @@
       />
       <button onclick="sendUrl()" class="send-button">Check</button>
 
-      <!-- Betöltési animáció (GIF) -->
       <div id="loading" style="display: none">
         <img src="loading.gif" alt="Loading..." class="loading-gif" />
-        <!-- A GIF méretét a CSS-ben állítjuk be -->
       </div>
 
-      <!-- Eredmények megjelenítése -->
       <div id="result" class="result-message"></div>
     </div>
   </body>
