@@ -2,3 +2,4 @@ pytube
 moviepy
 flask
 flask_cors
+profanityfilter

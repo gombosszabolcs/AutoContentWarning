@@ -6,7 +6,7 @@ from moviepy.editor import VideoFileClip
 import ssl
 import time
 import json
-from profanity_filter import ProfanityFilter
+from profanityfilter import ProfanityFilter
 
 logging.basicConfig(
     level=logging.INFO,
@@ -20,7 +20,7 @@ class Create_SubtitleFromLink:
     def __init__(self, output_path="whisperX/examples"):
         os.makedirs(output_path, exist_ok=True)
         self.output_path = os.path.abspath(output_path)
-        self.sanitize_filename = ""
+        self.sanitized_video_file = ""
 
     def sanitize_filename(self, filename):
         '''
@@ -93,13 +93,14 @@ class Create_SubtitleFromLink:
             logging.error(f"Error while running WhisperX: {e}")
 
     def is_clean(self):
-        file = open(os.getcwd() + "/results/" + self.sanitize_filename + ".txt", "r")
+        file = open(os.getcwd() + "/whisperX/results/" +
+                    self.sanitized_video_file[:-3] + "txt", "r")
         content = file.read()
         file.close()
         pf = ProfanityFilter()
-        return pf.is_clean(content)
-
-
+        result = pf.is_clean(content)
+        logging.info(result)
+        return result
 
 
 if __name__ == "__main__":
@@ -121,26 +122,20 @@ if __name__ == "__main__":
 
         if audio_file:
             creater.run_whisperx(audio_file)
+    result = creater.is_clean()
+    sys.stdout.write(json.dumps({"decision": result}))
 
-
-    sys.stdout.write(json.dumps({"decision": creater.is_clean()}))
     end_time = time.time()
     full_time = end_time - start_time
+    '''
 
-
-    try: 
-        video_file = os.getcwd() + f"\whisperX\examples\{video_file}"
+    try:
+        video_file = os.getcwd() + f"/whisperX/examples/{video_file}"
         os.remove(video_file)
         print(f"File '{video_file}' deleted successfully.")
-    except:
-        FileNotFoundError: print(f"File '{video_file}' not found.")
-
-    try: 
         os.remove(audio_file)
         print(f"File '{audio_file}' deleted successfully.")
-    except:
-        FileNotFoundError: print(f"File '{audio_file}' not found.")
-    
-
-
+    except FileNotFoundError as e:
+        print(f"File '{e}' not found.")
+    '''
     logging.info(f"Runtime: {full_time:.2f} seconds")
