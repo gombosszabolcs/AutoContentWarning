@@ -91,6 +91,8 @@ class Create_SubtitleFromLink:
             logging.error(f"Error while running WhisperX: {e}")
 
 
+
+
 if __name__ == "__main__":
     start_time = time.time()
 
