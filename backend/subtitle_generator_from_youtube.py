@@ -6,6 +6,7 @@ from moviepy.editor import VideoFileClip
 import ssl
 import time
 import json
+from profanity_filter import ProfanityFilter
 
 logging.basicConfig(
     level=logging.INFO,
@@ -19,6 +20,7 @@ class Create_SubtitleFromLink:
     def __init__(self, output_path="whisperX/examples"):
         os.makedirs(output_path, exist_ok=True)
         self.output_path = os.path.abspath(output_path)
+        self.sanitize_filename = ""
 
     def sanitize_filename(self, filename):
         '''
@@ -55,8 +57,8 @@ class Create_SubtitleFromLink:
         '''
 
         logging.info("Extracting audio from video...")
-        sanitized_video_file = self.sanitize_filename(video_file)
-        video_path = os.path.join(self.output_path, sanitized_video_file)
+        self.sanitized_video_file = self.sanitize_filename(video_file)
+        video_path = os.path.join(self.output_path, self.sanitized_video_file)
         audio_file = os.path.splitext(video_path)[0] + ".wav"
 
         try:
@@ -90,6 +92,13 @@ class Create_SubtitleFromLink:
         except Exception as e:
             logging.error(f"Error while running WhisperX: {e}")
 
+    def is_clean(self):
+        file = open(os.getcwd() + "/results/" + self.sanitize_filename + ".txt", "r")
+        content = file.read()
+        file.close()
+        pf = ProfanityFilter()
+        return pf.is_clean(content)
+
 
 if __name__ == "__main__":
     start_time = time.time()
@@ -110,7 +119,9 @@ if __name__ == "__main__":
 
         if audio_file:
             creater.run_whisperx(audio_file)
-    sys.stdout.write(json.dumps({"decision": decision}))
+
+
+    sys.stdout.write(json.dumps({"decision": creater.is_clean()}))
     end_time = time.time()
     full_time = end_time - start_time
 
@@ -129,5 +140,5 @@ if __name__ == "__main__":
         FileNotFoundError: print(f"File '{audio_file}' not found.")
     
 
-    
+
     logging.info(f"Runtime: {full_time:.2f} seconds")
