@@ -113,4 +113,21 @@ if __name__ == "__main__":
     sys.stdout.write(json.dumps({"decision": decision}))
     end_time = time.time()
     full_time = end_time - start_time
+
+
+    try: 
+        video_file = os.getcwd() + f"\whisperX\examples\{video_file}"
+        os.remove(video_file)
+        print(f"File '{video_file}' deleted successfully.")
+    except:
+        FileNotFoundError: print(f"File '{video_file}' not found.")
+
+    try: 
+        os.remove(audio_file)
+        print(f"File '{audio_file}' deleted successfully.")
+    except:
+        FileNotFoundError: print(f"File '{audio_file}' not found.")
+    
+
+    
     logging.info(f"Runtime: {full_time:.2f} seconds")
