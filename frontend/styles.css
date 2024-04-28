@@ -1,0 +1,58 @@
+/* Alap beállítások a testhez és a dobozhoz */
+body {
+  font-family: Arial, sans-serif; /* Alap betűtípus */
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* Világos háttér */
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #2196f3; /* Kék háttér */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+h1 {
+  color: #333333; /* Sötét szürke */
+}
+
+p {
+  color: #555555; /* Közepes szürke */
+}
+
+.input-box {
+  width: 80%; /* Széles bemeneti mező */
+  padding: 10px; /* Belső margó */
+  margin: 10px 0; /* Függőleges margó */
+  border: 1px solid #ccc; /* Világos szegély */
+  border-radius: 5px; /* Lekerekített sarkok */
+}
+
+.send-button {
+  padding: 10px 20px; /* Gomb mérete */
+  color: white; /* Gomb színe */
+  background-color: #4caf50; /* Zöld háttér */
+  border: none; /* Nincs szegély */
+  border-radius: 5px; /* Lekerekített sarkok */
+  cursor: pointer; /* Egérmutató változás */
+}
+
+.send-button:hover {
+  background-color: #45a049; /* Gomb színváltozás hover esetén */
+}
+
+.loading-gif {
+  width: 100px; /* A betöltési GIF mérete */
+  height: 100px; /* A betöltési GIF mérete */
+  margin-top: 20px; /* Margó a többi elem felett */
+}
+
+.result-message {
+  margin-top: 20px; /* Margó az eredményekhez */
+  color: #333333; /* Szöveg színe */
+  font-size: 18px; /* Betűméret */
+}
