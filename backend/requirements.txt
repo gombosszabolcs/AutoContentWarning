@@ -3,3 +3,6 @@ moviepy
 flask
 flask_cors
 profanityfilter
+youtube_dl
+certifi
+yt_dlp

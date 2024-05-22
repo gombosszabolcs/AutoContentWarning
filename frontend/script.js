@@ -1,10 +1,10 @@
 function sendUrl() {
-  const url = document.getElementById("urlInput").value; /* URL beolvasása */
-  const data = { url }; /* JSON adat az URL-lel */
+  const url = document.getElementById("urlInput").value;
+  const data = { url };
 
-  /* Betöltési ikon megjelenítése */
   document.getElementById("loading").style.display = "block";
-  document.getElementById("result").innerText = ""; /* Eredmény törlése */
+  document.getElementById("checker_button").style.visibility = "hidden";
+  document.getElementById("result").innerText = "";
 
   fetch("http://127.0.0.1:5000/api/process_url", {
     method: "POST",
@@ -13,23 +13,20 @@ function sendUrl() {
     },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json()) /* JSON válasz */
+    .then((response) => response.json())
     .then((data) => {
-      document.getElementById("loading").style.display =
-        "none"; /* Betöltési ikon elrejtése */
-      if (data.decision) {
-        document.getElementById("result").innerText =
-          "Content is appropriate."; /* Pozitív üzenet */
+      document.getElementById("checker_button").style.visibility = "visible";
+      document.getElementById("loading").style.display = "none";
+      if (data.decision == "True") {
+        document.getElementById("result").innerText = "Content is appropriate.";
       } else {
         document.getElementById("result").innerText =
-          "Content contains inappropriate language."; /* Negatív üzenet */
+          "Content contains inappropriate language.";
       }
     })
     .catch((error) => {
-      console.error("Error:", error); /* Hiba kezelés */
-      document.getElementById("loading").style.display =
-        "none"; /* Betöltési ikon elrejtése */
-      document.getElementById("result").innerText =
-        "An error occurred."; /* Hiba üzenet */
+      console.error("Error:", error);
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("result").innerText = "An error occurred.";
     });
 }
