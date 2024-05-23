@@ -6,3 +6,4 @@ profanityfilter
 youtube_dl
 certifi
 yt_dlp
+ruamel-yaml
