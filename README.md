@@ -6,6 +6,7 @@
 
 # 4. WhisperX Installation into the backend folder
 - whisperX: https://github.com/m-bain/whisperX
+- Open whisperX's README file and do the steps of setup
 
 # 5. Installation based on the requirements.txt file
 - pip install -r requirements.txt in the backend folder
